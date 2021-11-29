@@ -66,15 +66,12 @@ $$     \log(\lambda) \sim MVN (\mu,\Sigma(\theta))$$
 $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 
-## So does any of this matter?
+# So does any of this matter?
 
+## Posterior Predictive Checks
 
-## Some good resources
+## Simulation
 
-* ''Statistics for Spatio-Temporal Data'' - Cressie and Wikle
+## Results
 
-* ''Spatial and Spatio-temporal Bayesian Models with R - INLA'' - Blangiardo
-
-* ''Statistics for Spatial Data'' - Cressie
-
-* ''Spatial and Spatio‐Temporal Geostatistical Modeling and Kriging'' - Montero, Fernandez-Aviles, Mateu
+## Conclusion
