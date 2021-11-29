@@ -72,6 +72,8 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 ## Simulation
 
+* Doing what Nick says
+
 ## Results
 
 ## Conclusion
