@@ -1,1 +1,4 @@
 # WSC2021
+
+
+Slides for IDENTIFICATION OF LATENT STRUCTURE IN SPATIO-TEMPORAL MODELS OF VIOLENCE, to be presented at Winter Simulation Conference 2021
