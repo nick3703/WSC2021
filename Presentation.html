@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Spatio-Temporal Modeling of Pandemics</title>
+  <title>Identificaiton of Latent Structure in Spatio-Temporal Models</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Spatio-Temporal Modeling of Pandemics',
+                title: 'Identificaiton of Latent Structure in Spatio-Temporal Models',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -37,7 +37,7 @@
         github: ''
       },
             {
-        name:  'Jorge Mateu, Universitat Jaume I' ,
+        name:  'Krista Watts, United States Military Academy' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3133,166 +3133,61 @@ slide:not(.current) .plotly.html-widget{
 
 <slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>The Devil’s in the dependency!</h2></hgroup><article  id="the-devils-in-the-dependency">
 
-</article></slide><slide class=""><hgroup><h2>Basic Statistical Model</h2></hgroup><article  id="basic-statistical-model">
+</article></slide><slide class=""><hgroup><h2>Goals of Statistical Models</h2></hgroup><article  id="goals-of-statistical-models">
 
 <ul>
-<li><p>\(\boldsymbol{s_i}\) - Spatial vector, usually location in \({\rm I\!R}^2\)</p></li>
-<li><p>\(t\) - time</p></li>
-<li><p>\(Z(\boldsymbol{s_i},t)\) - Number of events observed at spatio-temporal location \(\boldsymbol{s_i} \times t\)</p></li>
+<li><p>Inference - Learn about the underlying data generating mechanism</p></li>
+<li><p>Prediction - Use model to predict future observations</p></li>
+<li><p>Real world it isn’t always so cut and dry</p></li>
 </ul>
 
-<p>\[Z(\boldsymbol{s_i},t) \sim Po(\lambda(\boldsymbol{s_i},t))\\
-\log(\lambda(\boldsymbol{s_i},t)) = \beta_0 + \sum_{j = 1}^n x_{(\boldsymbol{s_i},t,j)}\beta_j\]</p>
+</article></slide><slide class=""><hgroup><h2>Modeling of Violence</h2></hgroup><article  id="modeling-of-violence">
 
 <ul>
-<li>All spatial-temporal correlation is captured in the large structure covariates</li>
+<li><p>2017 National Institute of Justice competition</p></li>
+<li><p>Data driven approach and process driven approaches both used successfully</p></li>
+<li><p>Does it matter? Can we differentiate between the two processes?</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Castilla y Leon Confirmed COVID cases</h2></hgroup><article  id="castilla-y-leon-confirmed-covid-cases">
+</article></slide><slide class=""><hgroup><h2>Basics</h2></hgroup><article  id="basics">
 
-</article></slide><slide class=""><hgroup><h2>Spatial Only Model with Large Scale Effects</h2></hgroup><article  id="spatial-only-model-with-large-scale-effects">
-
-<p>\[Z(\boldsymbol{s_i}) \sim Po(\lambda(\boldsymbol{s_i}))\\
-\log(\lambda(\boldsymbol{s_i})) = \beta_0 + \log(Pop_{s_i})+\beta_{Urban}x_{s_i} \\
-\beta_0,\beta_{Urban} \sim N(0,10)\]</p>
+<p>\(Y\) is a Poisson process defined on a space-time set \(s_i \times t\) with an intensity function for all bounded \(B \in S\) given by \(\lambda(s_i,t) = \int_{s_i \times t} \rho (\zeta) d\zeta\)</p>
 
 <ul>
-<li>\(E[\lambda|Z]\) vs \(Z\)</li>
+<li><p>Informally - terrorism or criminal events arising at higher rates in regions of high intensity and lower rates in regions of lower intensity.</p></li>
+<li><p>How do we structure intensity field?</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Posterior Predictive Checks</h2></hgroup><article  id="posterior-predictive-checks">
+</article></slide><slide class=""><hgroup><h2>Hawkes Process</h2></hgroup><article  id="hawkes-process">
 
 <ul>
-<li>One goal of statistical modeling is to capture key elements of a scientific mechanism in small number of parameters</li>
-<li>Predictive distribution \(p(y^{rep}|y) = \int p(y^{rep}|\theta) p(\theta|y) d\theta\)</li>
-<li>Posterior predictive checks compare key elements of original data with key elements from generated data</li>
+<li><p>Self-exciting process, intensity field is increased by previous observations</p></li>
+<li><p>Motivated by Partial Differential Equation similar to reaction diffusion equation</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Capturing small scale spatial effects</h2></hgroup><article  id="capturing-small-scale-spatial-effects">
+<p>\[
+\lambda(s_i,t) = \mu(s_i,t) + \sum_{k: t_k &lt; t} g(t-t_k, |s_i - s_k|)\]</p>
 
-<p>\[Z(\boldsymbol{s_i}) \sim Po(\lambda(\boldsymbol{s_i}))\\
-\log(\lambda(\boldsymbol{s_i})) = \beta_0 + \sum_{j = 1}^n x_{(\boldsymbol{s_i},j)}\beta_j + \phi(s_i) \\
-\phi \sim \mbox{MVN}(\boldsymbol{0},\Sigma(\theta))\]</p>
+<p>\[
+    g(t-t_k,|s_i-s_k|) = \lambda \exp(-\lambda (t-t_k))\frac{1}{2\sigma^2} \exp(-||s_i-s_j|| \frac{1}{2\sigma^2})\]</p>
+
+</article></slide><slide class=""><hgroup><h2>Log Gaussian Cox Process</h2></hgroup><article  id="log-gaussian-cox-process">
 
 <ul>
-<li>Structure of \(\Sigma(\theta)^{-1}\) yields conditional spatial dependence</li>
+<li>Place spatio-temporal structure in an unobserved latent Gaussian process</li>
 </ul>
 
-<p>\[ \phi(s_i)|\phi(s_j) \sim Gau\left(\frac{1}{N|s_i|}\sum_{s_j \in N|s_i|} \phi(s_j),\sigma^2\right)\]</p>
+<p>\[  Z(A) \sim \mbox{Po}\left(\int_A \lambda(s_i,t) d(s_i) dt\right)\]</p>
+
+<p>\[     \log(\lambda) \sim MVN (\mu,\Sigma(\theta))\]</p>
 
 <ul>
-<li>Precision Matrix only has entries where neighbors exist</li>
+<li>Assume a sparse spatial precision matrix and a sparse temporal precision matrix</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Results</h2></hgroup><article  id="results">
+<p>\[\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}\]</p>
 
-<ul>
-<li><p>In practice used BYM model (convolves spatial ICAR with heterogeneous RE)</p></li>
-<li><p>Even done efficiently 100 times slower, but appears to replicate data well</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Alternatively INLA</h2></hgroup><article  id="alternatively-inla">
-
-<ul>
-<li>Compute marginals of hyper-parameters using Laplace approximation</li>
-<li>Compute condtional distribution of parameters given hyper-parameters and data</li>
-<li>Numerically integrate out hyperparameters</li>
-<li>Efficiently explore parameter space</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>inla.formula &lt;- y~ 1+pop+hzone+f(county,model=&quot;bym2&quot;,
-                                 graph = q.mat,constr = TRUE)
-
-model &lt;- inla(inla.formula,family=&quot;poisson&quot;,data=inla.df,
-             control.compute = list(dic=TRUE,cpo = TRUE))</pre>
-
-<ul>
-<li>12 seconds to run vs 250 seconds per chain in stan</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Is this overkill?</h2></hgroup><article  id="is-this-overkill">
-
-<ul>
-<li><p>Moran’s I fails to reject spatial randomness</p></li>
-<li><p>Model with only heterogeneous error</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Need to keep in mind dynamic of virus</h2></hgroup><article  id="need-to-keep-in-mind-dynamic-of-virus">
-
-</article></slide><slide class=""><hgroup><h2>Histogram of Moran’s I</h2></hgroup><article  id="histogram-of-morans-i">
-
-<ul>
-<li>Not Uniformly distributed</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Spatial-Temporal Models</h2></hgroup><article  id="spatial-temporal-models">
-
-<ul>
-<li>The spatial structure changes as time changes</li>
-<li>Challenge is how to structure model</li>
-</ul>
-
-<p>\[ \eta \equiv \log(\lambda(s_i,t)) = \mu(s_i,t) + \epsilon(s_i) + \gamma(t) + \kappa(s_i,t) + \delta(s_i,t)\]</p>
-
-<ul>
-<li>One option in seperability</li>
-</ul>
-
-<p>\[\Sigma_{\kappa}(\theta) = \Sigma_{s} \otimes \Sigma_{t}\]</p>
-
-<ul>
-<li>PDE Motivated Approach</li>
-</ul>
-
-<p>\[ \frac{\partial \eta}{\partial t} = \beta \frac{\partial^2 \eta}{\partial s}  - \alpha \eta \\ 
-\boldsymbol{\eta}_t = \boldsymbol{M} \boldsymbol{\eta}_{t-1} + \psi_t\]</p>
-
-</article></slide><slide class=""><hgroup><h2>Fitting Spatio-Temporal Models</h2></hgroup><article  id="fitting-spatio-temporal-models">
-
-<ul>
-<li><p>INLA (to me) is more straight forward</p></li>
-<li><p>223 time points, 247 spatial locations</p></li>
-<li><p>177 minutes to fit with \(\kappa(s_i,t) \sim MVN(0,I)\), 266 to fit with \(\Sigma_{\kappa} = \Sigma_{BYM} \otimes \Sigma_{RW1}\)</p></li>
-<li><p>DIC prefers simpler model</p></li>
-<li><p>Forecasting done as missing data</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Data Driven Processes - Moving from Latent Gaussian</h2></hgroup><article  id="data-driven-processes---moving-from-latent-gaussian">
-
-<ul>
-<li><p>Structure placed on \(\lambda(s_i,t)\) instead of \(\log(\lambda(s_i,t))\)</p></li>
-<li><p>Convolution of latent spatial and explicit temporal</p></li>
-<li><p>Can no longer fit in INLA</p></li>
-</ul>
-
-<p>\[\lambda(s_i,t) = \kappa Z(s_i,t-1) + \exp\left(\mu(s_i,t)+\phi(s_i)\right)\]</p>
-
-</article></slide><slide class=""><hgroup><h2>Data Driven Spatial Model with Hurdle</h2></hgroup><article  id="data-driven-spatial-model-with-hurdle">
-
-<p>\[Pr(Z(s_i,t)=0) = \pi(s_i,t) \\
-Pr(Z(s_i,t)&gt;0) = (1-\pi(s_i,t))Po(Z(s_i,t | \lambda(s_i,t)) \mathbb{1}_{Z(s_i,t)&gt;0} \\
-\mbox{logit} (\pi(s_i,t)) = \beta_0 + \beta_1 x_{Pop(s_i)} \\
-\log(\lambda(s_i,t)) = \beta_0 +\beta_1 x_{Dow(t)} + \phi(s_i)\]</p>
-
-</article></slide><slide class=""><hgroup><h2>Some preliminary results</h2></hgroup><article  id="some-preliminary-results">
-
-</article></slide><slide class=""><hgroup><h2>Interesting Lines of Research</h2></hgroup><article  id="interesting-lines-of-research">
-
-<ul>
-<li><p>How do we capture longer temporal dynamics?</p></li>
-<li><p>What are practical differences between data driven processes and latent Gaussian driven processes?</p></li>
-<li><p>How should immune population be factored in? Cases divided by suceptible?</p></li>
-<li><p>How do we disentangle mobility from response variable?</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Closing Thoughts</h2></hgroup><article  id="closing-thoughts">
-
-<ul>
-<li><p>Spatio-Temporal structure is primarily needed when large scale covariates fail to capture structure in data</p></li>
-<li><p>Things that are close together in time/space behave similarly</p></li>
-<li><p>Structure of covariance/precision matrix is necessary for computational reasons</p></li>
-<li><p>An appropriate statistical model should be able to replicate key characteristics of data</p></li>
-</ul>
+</article></slide><slide class=""><hgroup><h2>So does any of this matter?</h2></hgroup><article  id="so-does-any-of-this-matter">
 
 </article></slide><slide class=""><hgroup><h2>Some good resources</h2></hgroup><article  id="some-good-resources">
 
