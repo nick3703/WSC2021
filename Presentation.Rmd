@@ -1,5 +1,5 @@
 ---
-title: "Identificaiton of Latent Structure in Spatio-Temporal Models"
+title: "Identification of Latent Structure in Spatio-Temporal Models"
 author: 
   - Nick Clark, United States Military Academy
   - Krista Watts, United States Military Academy  
