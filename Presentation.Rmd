@@ -70,6 +70,26 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 ## Posterior Predictive Checks
 
+* How do we determine if a model is appropriate? $\chi^2$ GOF not an option...
+
+* Can a fit model replicate key data characteristics?
+
+* Compare the distribution of a given statistic of our data, $T(y)$ with the same statistic calculated from the posterior distribution of data simulated from our fitted model, $T(y_{rep}|y)$
+
+* What statistic to use?
+
+## Ripley's K
+
+* Quantifies the expected number of additional points within a set distance from another point over what is expected
+
+* High values of Ripley's K mean there is substantial clustering in the data, whereas low values means the data are more dispersed than what would be expected
+
+* Does not necessarily uniquely define a distribution
+
+* Does it in our case?
+
+
+
 ## Simulation
 
 * Doing what Nick says
