@@ -112,7 +112,21 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 * Posterior predictive checks indicated that the Ripley's K value from the LGCP routinely was similar to the Ripley's K from the Hawkes process
 
+![](PostPvals.png)
 
+* About 60 \% of the time the LGCP fit model generated Ripley's K values that were larger than the actual Ripley K value from the Hawkes process
 
 
 ## Conclusion
+
+* Second order process likely cannot differentiate between Hawkes and LGCP
+
+* No clear rule to differentiate these two processes from each other
+
+* Practitioners should use first-order principles to create testable models
+
+* Recall goals of predictive models vs goals of inferential models
+
+* Caution when assigning meaning to statistical model, competing model may fit data just as well with alternate meaning
+
+Thanks!!
