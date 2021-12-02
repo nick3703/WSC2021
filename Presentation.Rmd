@@ -7,6 +7,7 @@ output:
   ioslides_presentation:
     incremental: false
     widescreen: true
+    
 ---
 
 # The Devil's in the dependency!
@@ -76,6 +77,8 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 * Compare the distribution of a given statistic of our data, $T(y)$ with the same statistic calculated from the posterior distribution of data simulated from our fitted model, $T(y_{rep}|y)$
 
+* Estimating $P(T(y_{rep}|y)>T(y))$
+
 * What statistic to use?
 
 ## Ripley's K
@@ -95,5 +98,21 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 * Doing what Nick says
 
 ## Results
+
+* Simulated from Hawkes Process across range of $\sigma$ values, fit data to LGCP and then simulated from fitted LGCP
+
+* As $\sigma$ increased within the Hawkes process, the amount of clustering at a distance of 1 unit decreases, which is to be expected
+
+
+![](KVals.png)
+
+## LGCP fit to Hawkes Process
+
+* Took Hawkes process data, fit it to LGCP, simulated from LGCP
+
+* Posterior predictive checks indicated that the Ripley's K value from the LGCP routinely was similar to the Ripley's K from the Hawkes process
+
+
+
 
 ## Conclusion
