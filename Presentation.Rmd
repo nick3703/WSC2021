@@ -19,12 +19,18 @@ output:
 * Prediction - Use model to predict future observations
 
 * Real world it isn't always so cut and dry
+  * Often data is used both to infer and predict
+  * The challenge is, how do we know our model is appropriate?
 
 ## Modeling of Violence
 
-* 2017 National Institute of Justice competition
+* Motivation: 2017 National Institute of Justice competition
+  * Can you predict where/when violence will occur in a city
+  * Overall goal: Put cops on dots
 
-* Data driven approach and process driven approaches both used successfully
+* On the surface, two very different approaches both yielded excellent results
+  * One relied on first order principles to build out a self-exciting process
+  * The second relied on traditionally spatio-temporal statistical model
 
 * Does it matter? Can we differentiate between the two processes?
 
@@ -107,6 +113,14 @@ $$
     g(t-t_k,|s_i-s_k|) = \lambda \exp(-\lambda (t-t_k))\frac{1}{2\sigma^2} \exp(-||s_i-s_j|| \frac{1}{2\sigma^2})$$
 
 ## Simulation
+
+* Generate events from the background process over a 10x10 field of arbitrary units and 15 time periods 
+
+* Simulate using parent/child methodology
+  * Parent events simulated from Poisson process with fixed mean
+  * Each parent event spawns $N\sim Po(m)$ events spread spatially and temporally according to triggering function
+  
+* Data is then fit to both Hawkes Process as well as LGCP
 
 ## Results
 
