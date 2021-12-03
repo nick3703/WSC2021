@@ -95,7 +95,18 @@ $$\Sigma_{s,t}^{-1} = \Sigma_t(\theta)^{-1} \otimes \Sigma_{s}(\theta)^{-1}$$
 
 ## Simulation
 
-* Doing what Nick says
+* Assume that underlying generative process is Hawkes
+
+* Constant background intensity and $\lambda$, range $\sigma$
+
+$$
+\lambda(s_i,t) = \mu(s_i,t) + \sum_{k: t_k < t} g(t-t_k, |s_i - s_k|)$$
+
+
+$$
+    g(t-t_k,|s_i-s_k|) = \lambda \exp(-\lambda (t-t_k))\frac{1}{2\sigma^2} \exp(-||s_i-s_j|| \frac{1}{2\sigma^2})$$
+
+## Simulation
 
 ## Results
 

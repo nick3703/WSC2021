@@ -3211,8 +3211,17 @@ slide:not(.current) .plotly.html-widget{
 </article></slide><slide class=""><hgroup><h2>Simulation</h2></hgroup><article  id="simulation">
 
 <ul>
-<li>Doing what Nick says</li>
+<li><p>Assume that underlying generative process is Hawkes</p></li>
+<li><p>Constant background intensity and \(\lambda\), range \(\sigma\)</p></li>
 </ul>
+
+<p>\[
+\lambda(s_i,t) = \mu(s_i,t) + \sum_{k: t_k &lt; t} g(t-t_k, |s_i - s_k|)\]</p>
+
+<p>\[
+    g(t-t_k,|s_i-s_k|) = \lambda \exp(-\lambda (t-t_k))\frac{1}{2\sigma^2} \exp(-||s_i-s_j|| \frac{1}{2\sigma^2})\]</p>
+
+</article></slide><slide class=""><hgroup><h2>Simulation</h2></hgroup><article  id="simulation-1">
 
 </article></slide><slide class=""><hgroup><h2>Results</h2></hgroup><article  id="results">
 
